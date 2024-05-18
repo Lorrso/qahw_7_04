@@ -1,13 +1,16 @@
 let page;
 
+beforeEach(async () => {
+  page = await browser.newPage();
+});
+
+afterEach(() => {
+  page.close();
+});
+
 describe("Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team");
-  });
-  
-  afterEach(() => {
-    page.close();
   });
   
   test("The h1 header content", async () => {
@@ -38,12 +41,7 @@ describe("Github page tests", () => {
 
 describe("Other Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/organizations/enterprise_plan?ref_cta=Start%2520a%2520trial&ref_loc=user_drawer_side_panel&ref_page=Header+Avatar");
-  });
-  
-  afterEach(() => {
-    page.close();
   });
 
   test("The h1 header content", async () => {
